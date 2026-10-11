@@ -1,0 +1,13 @@
+Déposez ici votre CV au format PDF. Le nom attendu est celui indiqué
+dans config.js (cv.fichier), actuellement :
+
+    Ghassen_Kahia_CVJob_Etudiant.pdf
+
+Le site le détecte automatiquement : les boutons « Consulter mon CV »
+et « Télécharger mon CV » se mettent à jour sans autre modification.
+
+Pour utiliser un autre nom de fichier, changez seulement cette ligne.
+
+Avant de publier : vérifiez que le PDF ne contient ni adresse postale,
+ni numéro de titre de séjour, ni date de naissance si vous ne souhaitez
+pas les rendre publics. Le fichier sera téléchargeable par tout le monde.

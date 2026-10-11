@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ghassen-kahia.github.io/emploi-etudiant/sitemap.xml

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page introuvable — Ghassen Kahia</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#14213d">
+  <style>
+    :root { --navy: #14213d; --ink: #1c2333; --soft: #4a5263; --paper: #fbfaf7; --line: #e1ddd3; --accent: #85591a; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      padding: 24px 16px; background: var(--paper); color: var(--ink);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; line-height: 1.6;
+    }
+    main { max-width: 32rem; text-align: center; }
+    .code { margin: 0 0 8px; font-family: Georgia, serif; font-size: 1rem; letter-spacing: .14em; color: var(--accent); }
+    h1 { margin: 0 0 12px; font-family: Georgia, "Times New Roman", serif; font-weight: 500; font-size: clamp(1.8rem, 6vw, 2.4rem); line-height: 1.15; color: var(--navy); }
+    p { margin: 0 0 28px; color: var(--soft); }
+    a.btn {
+      display: inline-flex; align-items: center; min-height: 48px; padding: 12px 24px;
+      border-radius: 999px; background: var(--navy); color: #fff; font-weight: 600; text-decoration: none;
+    }
+    a.btn:hover { background: #22325a; }
+    a.btn:focus-visible { outline: 3px solid #b5862f; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="code">ERREUR 404</p>
+    <h1>Cette page n’existe pas</h1>
+    <p>Le lien suivi est peut-être incomplet. Vous trouverez mon CV, mes disponibilités et mes coordonnées sur la page principale.</p>
+    <a class="btn" id="home" href="/emploi-etudiant/">Retour à l’accueil</a>
+  </main>
+  <script>
+    // Retrouve la racine du site quel que soit le nom du dépôt (ex. /emploi-etudiant/).
+    (function () {
+      var first = location.pathname.split("/").filter(Boolean)[0];
+      var isProjectSite = /\.github\.io$/.test(location.hostname) && first;
+      document.getElementById("home").href = isProjectSite ? "/" + first + "/" : "/";
+    })();
+  </script>
+</body>
+</html>

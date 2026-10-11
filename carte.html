@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carte de candidature — Ghassen Kahia</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <!--
+    Page outil (non liée depuis le site) : 4 cartes A6 par feuille A4,
+    à imprimer et découper pour les déposer en magasin avec le CV.
+    Ouvrir /carte.html puis Ctrl+P (A4, marges « Aucune », échelle 100 %).
+  -->
+  <style>
+    @font-face { font-family: "Public Sans"; src: url("assets/fonts/public-sans-var.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: "Newsreader"; src: url("assets/fonts/newsreader-var.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+    :root { --navy: #14213d; --ink: #1c2333; --soft: #4a5263; --line: #e1ddd3; --accent: #85591a; --gold: #b5862f; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #e9e6df; color: var(--ink); font-family: "Public Sans", system-ui, sans-serif; }
+
+    .toolbar {
+      max-width: 210mm; margin: 24px auto 16px; padding: 0 16px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .toolbar p { margin: 0; font-size: 14px; color: var(--soft); max-width: 34em; }
+    .toolbar button {
+      min-height: 44px; padding: 0 22px; border: 0; border-radius: 999px;
+      background: var(--navy); color: #fff; font: inherit; font-weight: 600; cursor: pointer;
+    }
+    .toolbar button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+    .sheet {
+      width: 210mm; height: 297mm; margin: 0 auto 32px; background: #fff;
+      display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+      box-shadow: 0 10px 30px -12px rgba(0,0,0,.3);
+    }
+    .card {
+      position: relative; padding: 11mm 10mm 9mm; display: flex; flex-direction: column;
+      border-right: 1px dashed #cfcac0; border-bottom: 1px dashed #cfcac0;
+    }
+    .card:nth-of-type(2n) { border-right: 0; }
+    .card:nth-of-type(n+3) { border-bottom: 0; }
+
+    .eyebrow { margin: 0 0 4mm; font-size: 7.5pt; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+    .name { margin: 0; font-family: "Newsreader", Georgia, serif; font-weight: 500; font-size: 24pt; line-height: 1; color: var(--navy); }
+    .role { margin: 2.5mm 0 5mm; font-size: 9.5pt; line-height: 1.4; color: var(--soft); }
+    .rule { width: 12mm; height: 1.5px; background: var(--gold); margin-bottom: 4.5mm; }
+    ul { margin: 0; padding: 0; list-style: none; font-size: 9pt; line-height: 1.45; }
+    li { position: relative; padding-left: 4mm; margin-bottom: 1.6mm; }
+    li::before { content: ""; position: absolute; left: 0; top: 1.9mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--navy); }
+    li strong { font-weight: 650; color: var(--navy); }
+
+    .scan { margin: auto 0 0; padding: 3mm 3.5mm; border-radius: 2mm; background: #f3f1ec; font-size: 8.5pt; line-height: 1.4; color: var(--navy); }
+    .scan strong { font-weight: 650; }
+    .foot { margin-top: 4mm; display: flex; align-items: flex-end; gap: 5mm; padding-top: 4mm; border-top: 1px solid var(--line); }
+    .qr { width: 24mm; height: 24mm; flex: none; }
+    .contact { font-size: 8.5pt; line-height: 1.5; min-width: 0; }
+    .contact b { display: block; font-size: 7pt; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); font-weight: 650; }
+    .contact span { display: block; word-break: break-all; color: var(--ink); font-weight: 550; }
+    .todo { color: #8e2a1f; background: #fdecea; border: 1px dashed #c0392b; border-radius: 3px; padding: 0 3px; }
+
+    @media (max-width: 860px) {
+      .sheet { width: auto; height: auto; margin: 0 16px 24px; grid-template-columns: 1fr; grid-template-rows: none; }
+      .card { min-height: 148mm; border-right: 0 !important; border-bottom: 1px dashed #cfcac0 !important; }
+      .card:nth-of-type(n+2) { display: none; }
+    }
+    @media print {
+      @page { size: A4 portrait; margin: 0; }
+      body { background: #fff; }
+      .toolbar { display: none; }
+      .sheet { margin: 0; box-shadow: none; width: 210mm; height: 297mm; display: grid !important; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+      .card { display: flex !important; min-height: 0; }
+      .card:nth-of-type(2n) { border-right: 0 !important; }
+      .card:nth-of-type(odd) { border-right: 1px dashed #cfcac0 !important; }
+      .card:nth-of-type(n+3) { border-bottom: 0 !important; }
+    }
+  </style>
+  <script src="config.js" defer></script>
+</head>
+<body>
+  <div class="toolbar">
+    <p>4 cartes A6 par feuille A4, à découper et à joindre à votre CV lors d’un dépôt en magasin.
+       Impression&nbsp;: A4, marges «&nbsp;Aucune&nbsp;», échelle 100&nbsp;%.</p>
+    <button type="button" onclick="window.print()">Imprimer</button>
+  </div>
+
+  <main class="sheet" id="sheet">
+    <template id="tpl">
+      <article class="card">
+        <p class="eyebrow">Candidature · Emploi étudiant</p>
+        <h1 class="name">Ghassen Kahia</h1>
+        <p class="role">Étudiant ingénieur en échange à l’ESEO, je recherche un emploi étudiant à temps partiel à Dijon.</p>
+        <div class="rule"></div>
+        <ul>
+          <li><strong>Postes&nbsp;:</strong> mise en rayon, caisse, restauration, logistique, vente</li>
+          <li><strong>Lieu&nbsp;:</strong> <span data-zone>Dijon et alentours</span></li>
+          <li><strong>Disponibilités&nbsp;:</strong> <span data-dispo>à confirmer</span></li>
+          <li>Motivé, adaptable, ponctuel et prêt à apprendre</li>
+        </ul>
+        <p class="scan"><strong>Scannez le code</strong> pour consulter mon CV, mes disponibilités et mes coordonnées.</p>
+        <div class="foot">
+          <img class="qr" src="assets/img/qr-site.svg" alt="QR code vers la page de candidature">
+          <div class="contact">
+            <b>Contact</b>
+            <span data-email></span>
+            <span data-phone></span>
+            <span>ghassen-kahia.github.io/emploi-etudiant</span>
+          </div>
+        </div>
+      </article>
+    </template>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var P = window.PROFIL || {}, c = P.contact || {};
+      var sheet = document.getElementById("sheet");
+      var tpl = document.getElementById("tpl");
+      function fill(el, value, label) {
+        if (value) { el.textContent = value; }
+        else if (label) { el.innerHTML = '<span class="todo">À compléter : ' + label + "</span>"; }
+        else { el.remove(); }
+      }
+      for (var i = 0; i < 4; i++) {
+        var card = tpl.content.cloneNode(true);
+        fill(card.querySelector("[data-zone]"), c.zone, "zone");
+        var dispo = P.libelleDisponibilite || "";
+        if (dispo) card.querySelector("[data-dispo]").textContent = dispo.replace(/^Disponibilités\s+/i, "");
+        fill(card.querySelector("[data-email]"), c.email, "email");
+        fill(card.querySelector("[data-phone]"), c.telephone, "");
+        sheet.appendChild(card);
+      }
+    });
+  </script>
+</body>
+</html>
