@@ -12,7 +12,7 @@
 
   var P = window.PROFIL || {};
   var I18N = window.I18N || { ui: {} };
-  var LANGS = ["fr", "en", "de"];
+  var LANGS = ["fr", "en", "de", "es"];
   var host = location.hostname;
   // En local, les champs vides s'affichent comme « À compléter » ; en ligne, ils sont masqués.
   // Ajoutez ?public à l'adresse locale pour voir la page exactement comme les visiteurs.
@@ -116,6 +116,13 @@
 
     $all("[data-photo] img").forEach(function (img) { img.alt = ui("photoAlt"); });
 
+    var age = tr(P.age).trim();
+    $all("[data-age]").forEach(function (el) {
+      el.textContent = "";
+      if (age) el.textContent = ui("age").replace("{n}", age);
+      else if (IS_LOCAL) el.appendChild(todo("age"));
+    });
+
     renderWeek();
     renderLanguages();
   }
@@ -160,6 +167,23 @@
     try { document.execCommand("copy"); } catch (e) { /* ignoré */ }
     document.body.removeChild(t);
   }
+
+  /* ---------- Logos (config.js → logos), sinon badge texte ---------- */
+  var logos = P.logos || {};
+  $all("[data-logo]").forEach(function (box) {
+    var src = tr(logos[box.getAttribute("data-logo")]).trim();
+    if (!src) return;
+    var img = new Image();
+    img.alt = "";
+    img.decoding = "async";
+    // Le badge n'est remplacé qu'une fois l'image chargée : un fichier manquant laisse le badge.
+    img.onload = function () {
+      box.textContent = "";
+      box.classList.remove("tl-logo-text");
+      box.appendChild(img);
+    };
+    img.src = src;
+  });
 
   /* ---------- Photo (sinon monogramme) ---------- */
   var photo = tr(P.photo).trim();
@@ -263,6 +287,15 @@
   var langBox = document.querySelector("[data-languages]");
   var langList = document.querySelector("[data-languages-list]");
 
+  // Remplissage de la jauge d'après le niveau indiqué dans config.js (CECRL ou « langue maternelle »).
+  function levelOf(niveau) {
+    var t = (niveau && typeof niveau === "object" ? niveau.fr || "" : String(niveau || "")).toLowerCase();
+    if (/matern|natif|native|mutter/.test(t)) return 100;
+    var cefr = { c2: 95, c1: 86, b2: 74, b1: 58, a2: 40, a1: 24 };
+    var m = t.match(/\b([abc][12])\b/);
+    return m ? cefr[m[1]] : 60;
+  }
+
   function renderLanguages() {
     $all("[data-languages-inline]").forEach(function (el) {
       el.textContent = langs.map(function (l) { return tr(l.langue); }).join(", ");
@@ -274,10 +307,15 @@
         var li = document.createElement("li");
         var a = document.createElement("span");
         var b = document.createElement("span");
+        var bar = document.createElement("span");
         a.textContent = tr(l.langue);
         b.textContent = tr(l.niveau);
+        bar.className = "lang-bar";
+        bar.setAttribute("aria-hidden", "true");
+        li.style.setProperty("--lvl", levelOf(l.niveau) + "%");
         li.appendChild(a);
         li.appendChild(b);
+        li.appendChild(bar);
         langList.appendChild(li);
       });
       langBox.hidden = false;
@@ -354,6 +392,63 @@
   $all("[data-set-lang]").forEach(function (b) {
     b.addEventListener("click", function () { setLang(b.getAttribute("data-set-lang"), true); });
   });
+
+  /* ---------- Menu des langues (drapeaux) ---------- */
+  var langMenu = document.querySelector("[data-lang-menu]");
+  if (langMenu) {
+    var langBtn = langMenu.querySelector("[data-lang-current]");
+    var langOpts = langMenu.querySelector(".lang-options");
+    var openLang = function (open) {
+      langBtn.setAttribute("aria-expanded", String(open));
+      langOpts.hidden = !open;
+    };
+    var syncLang = function () {
+      var cur = langMenu.querySelector('[data-set-lang="' + lang + '"] .flag svg');
+      var flag = langMenu.querySelector("[data-lang-flag]");
+      if (cur && flag) { flag.textContent = ""; flag.appendChild(cur.cloneNode(true)); }
+      langMenu.querySelector("[data-lang-code]").textContent = lang.toUpperCase();
+    };
+    langBtn.addEventListener("click", function () { openLang(langOpts.hidden); });
+    langOpts.addEventListener("click", function (e) {
+      if (e.target.closest("[data-set-lang]")) { openLang(false); langBtn.focus(); }
+    });
+    document.addEventListener("click", function (e) { if (!langMenu.contains(e.target)) openLang(false); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !langOpts.hidden) { openLang(false); langBtn.focus(); }
+    });
+    document.addEventListener("langchange", syncLang);
+    syncLang();
+  }
+
+  /* ---------- Présentation vidéo (fenêtre modale) ---------- */
+  var videoModal = document.querySelector("[data-video-modal]");
+  if (videoModal && typeof videoModal.showModal === "function") {
+    var videoEl = videoModal.querySelector("[data-video]");
+    var closeVideo = function () { if (videoModal.open) videoModal.close(); };
+    // La vidéo existe en FR / EN / DE / ES : on charge celle de la langue affichée.
+    var syncVideo = function () {
+      var src = "assets/video/presentation-" + lang + ".mp4";
+      if (videoEl.getAttribute("src") === src) return;
+      videoEl.pause();
+      videoEl.setAttribute("src", src);
+      videoEl.setAttribute("poster", "assets/video/presentation-poster-" + lang + ".jpg");
+    };
+    syncVideo();
+    document.addEventListener("langchange", syncVideo);
+    $all("[data-video-open]").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (toggle) setMenu(false);
+        videoModal.showModal();
+        var p = videoEl.play();
+        if (p && p.catch) p.catch(function () { /* lecture bloquée : les commandes restent disponibles */ });
+      });
+    });
+    videoModal.querySelector("[data-video-close]").addEventListener("click", closeVideo);
+    // Clic sur le fond assombri : fermeture
+    videoModal.addEventListener("click", function (e) { if (e.target === videoModal) closeVideo(); });
+    videoModal.addEventListener("close", function () { videoEl.pause(); });
+  }
 
   if (lang === "fr") {
     renderData();
@@ -444,6 +539,219 @@
   window.addEventListener("beforeprint", function () {
     $all(".reveal").forEach(function (el) { el.classList.add("is-visible"); });
   });
+
+  /* ---------- Effets visuels (désactivés si l'utilisateur réduit les animations) ---------- */
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Thème clair / sombre (le thème initial est posé par le script du <head>) ---------- */
+  var root = document.documentElement;
+  var themeBtn = document.querySelector("[data-theme-toggle]");
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+
+  function applyTheme(theme) {
+    root.setAttribute("data-theme", theme);
+    if (themeBtn) themeBtn.setAttribute("aria-pressed", String(theme === "light"));
+    if (themeMeta) themeMeta.setAttribute("content", theme === "light" ? "#f6f6fb" : "#06081a");
+  }
+  applyTheme(root.getAttribute("data-theme") === "light" ? "light" : "dark");
+
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      try { localStorage.setItem("theme", next); } catch (e) { /* sans importance */ }
+
+      if (!document.startViewTransition || reduceMotion) { applyTheme(next); return; }
+      // Le nouveau thème s'étend en cercle depuis le bouton.
+      var r = themeBtn.getBoundingClientRect();
+      var x = r.left + r.width / 2, y = r.top + r.height / 2;
+      var radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      document.startViewTransition(function () { applyTheme(next); }).ready.then(function () {
+        root.animate(
+          { clipPath: ["circle(0px at " + x + "px " + y + "px)", "circle(" + radius + "px at " + x + "px " + y + "px)"] },
+          { duration: 650, easing: "cubic-bezier(.2, .7, .2, 1)", pseudoElement: "::view-transition-new(root)" }
+        );
+      }).catch(function () { /* transition interrompue par un double clic : le thème est déjà appliqué */ });
+    });
+  }
+
+  // Sans choix mémorisé, on suit le réglage du système s'il change.
+  if (window.matchMedia) {
+    var sysLight = window.matchMedia("(prefers-color-scheme: light)");
+    var onSys = function (e) {
+      var saved = null;
+      try { saved = localStorage.getItem("theme"); } catch (err) { /* ignoré */ }
+      if (!saved) applyTheme(e.matches ? "light" : "dark");
+    };
+    if (sysLight.addEventListener) sysLight.addEventListener("change", onSys);
+  }
+  var finePointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  // Barre de progression de lecture
+  var progress = document.querySelector(".scroll-progress");
+  if (progress) {
+    var setProgress = function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = "scaleX(" + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ")";
+    };
+    window.addEventListener("scroll", setProgress, { passive: true });
+    window.addEventListener("resize", setProgress);
+    setProgress();
+  }
+
+  // Bandeau « à la une » : reprend les postes et les atouts (icône + intitulé), dans la langue courante
+  var marquee = document.querySelector("[data-marquee]");
+  function fillMarquee() {
+    if (!marquee) return;
+    var items = $all(".sector, .cards .card").map(function (el) {
+      return {
+        text: el.querySelector("h4, h3").textContent.replace(/^.*:\s*/, "").trim(),
+        icon: el.querySelector("svg")
+      };
+    });
+    marquee.textContent = "";
+    // Deux copies identiques : l'animation glisse de -50 % pour une boucle sans à-coup.
+    for (var k = 0; k < 2; k++) {
+      var group = document.createElement("div");
+      group.className = "marquee-group";
+      items.forEach(function (it) {
+        var span = document.createElement("span");
+        if (it.icon) {
+          var ic = it.icon.cloneNode(true);
+          ic.setAttribute("class", "tk-icon");
+          span.appendChild(ic);
+        }
+        span.appendChild(document.createTextNode(it.text));
+        group.appendChild(span);
+      });
+      marquee.appendChild(group);
+    }
+  }
+  fillMarquee();
+  document.addEventListener("langchange", fillMarquee);
+
+  var ticker = document.querySelector("[data-ticker]");
+  var tickerBtn = document.querySelector("[data-ticker-toggle]");
+  if (ticker && tickerBtn) {
+    tickerBtn.addEventListener("click", function () {
+      var paused = ticker.classList.toggle("is-paused");
+      tickerBtn.setAttribute("aria-pressed", String(paused));
+    });
+  }
+
+  // Atouts : grande icône en filigrane dans chaque carte
+  $all(".cards .card").forEach(function (card) {
+    var icon = card.querySelector(".card-icon");
+    if (!icon || card.querySelector(".card-watermark")) return;
+    var mark = icon.cloneNode(true);
+    mark.setAttribute("class", "card-watermark");
+    card.appendChild(mark);
+  });
+
+  // Halo lumineux qui suit le curseur sur les cartes
+  if (finePointer) {
+    $all(".card, .sector, .fiche, .cv-block, .week, .dispo-notes > div").forEach(function (el) {
+      el.classList.add("has-spot");
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        el.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+    });
+  }
+
+  // Légère inclinaison 3D de la fiche « En bref »
+  var fiche = document.querySelector(".fiche");
+  if (fiche && finePointer && !reduceMotion) {
+    fiche.addEventListener("pointermove", function (e) {
+      var r = fiche.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      fiche.style.transform = "perspective(1000px) rotateX(" + (-y * 5) + "deg) rotateY(" + (x * 5) + "deg)";
+    });
+    fiche.addEventListener("pointerleave", function () { fiche.style.transform = ""; });
+  }
+
+  // Compteurs animés (0 → valeur) à l'apparition
+  var counters = $all("[data-count]");
+  if (counters.length && !reduceMotion && "IntersectionObserver" in window) {
+    var countObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        countObs.unobserve(en.target);
+        var el = en.target, end = +el.getAttribute("data-count"), t0 = null;
+        var step = function (t) {
+          if (!t0) t0 = t;
+          var p = Math.min((t - t0) / 1200, 1);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        el.textContent = "0";
+        requestAnimationFrame(step);
+      });
+    });
+    counters.forEach(function (el) { countObs.observe(el); });
+  }
+
+  /* ---------- Carte interactive (Leaflet + CARTO), chargée à l'approche ---------- */
+  var mapBox = document.querySelector("[data-map]");
+  var LEAFLET = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/";
+  function loadAsset(tag, attrs) {
+    return new Promise(function (resolve, reject) {
+      var el = document.createElement(tag);
+      Object.keys(attrs).forEach(function (k) { el.setAttribute(k, attrs[k]); });
+      el.onload = resolve;
+      el.onerror = reject;
+      document.head.appendChild(el);
+    });
+  }
+  function initMap() {
+    var lat = +mapBox.dataset.lat, lng = +mapBox.dataset.lng, radius = +mapBox.dataset.radius;
+    var small = mapBox.clientWidth < 560;
+    var map = L.map(mapBox, { zoomControl: false, scrollWheelZoom: false, attributionControl: true }).setView([lat, lng], small ? 11 : 12);
+    map.attributionControl.setPrefix(false);
+    L.control.zoom({ position: "bottomright" }).addTo(map);
+    // Tuiles OpenStreetMap ; leur style clair / sombre est appliqué en CSS (.map-tiles) selon le thème.
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19
+    }).addTo(map);
+
+    var area = L.circle([lat, lng], {
+      radius: radius, color: "#6fd3ff", weight: 1.5, opacity: .9, dashArray: "6 8",
+      fillColor: "#7c6cff", fillOpacity: .1, interactive: false
+    }).addTo(map);
+    var photo = tr(P.photo).trim();
+    var pin = L.divIcon({
+      className: "map-pin",
+      html: '<span class="map-pin-ring"></span><span class="map-pin-ring r2"></span>' +
+        (photo ? '<img src="' + photo + '" alt="">' : "<b>GK</b>"),
+      iconSize: [58, 58],
+      iconAnchor: [29, 29]
+    });
+    L.marker([lat, lng], { icon: pin, keyboard: false, interactive: false }).addTo(map);
+    // Zoom entier (tuiles nettes, sans jointures) ; vue décalée pour que l'encart ne masque pas l'épingle.
+    map.panBy([0, small ? -28 : -36], { animate: false });
+    // Molette active seulement après un clic sur la carte (le défilement de la page n'est pas capturé).
+    map.on("click focus", function () { map.scrollWheelZoom.enable(); });
+    mapBox.addEventListener("mouseleave", function () { map.scrollWheelZoom.disable(); });
+    mapBox.classList.add("is-ready");
+  }
+  if (mapBox && "IntersectionObserver" in window) {
+    var mapObs = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      mapObs.disconnect();
+      Promise.all([
+        loadAsset("link", { rel: "stylesheet", href: LEAFLET + "leaflet.min.css", crossorigin: "anonymous",
+          integrity: "sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" }),
+        loadAsset("script", { src: LEAFLET + "leaflet.min.js", crossorigin: "anonymous",
+          integrity: "sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" })
+      ]).then(initMap).catch(function (err) {
+        // Hors ligne ou CDN indisponible : le lien « Agrandir la carte » reste disponible.
+        if (window.console) console.warn("Carte indisponible :", err && err.message ? err.message : err);
+      });
+    }, { rootMargin: "300px 0px" });
+    mapObs.observe(mapBox);
+  }
 
   /* ---------- Année du pied de page ---------- */
   $all("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });

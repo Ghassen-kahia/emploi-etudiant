@@ -3,7 +3,7 @@
  *
  * Il répond uniquement à partir de config.js et des faits déjà publiés
  * sur la page : il ne peut donc rien inventer. Les questions tapées sont
- * reconnues par mots-clés (français, anglais et allemand), quelle que
+ * reconnues par mots-clés (français, anglais, allemand et espagnol), quelle que
  * soit la langue affichée. Rien n'est envoyé ni enregistré.
  *
  * Pour modifier une réponse : section TEXTES ci-dessous.
@@ -66,12 +66,13 @@
       contactEnd: "Précisez le poste et les horaires proposés ; il vous répondra rapidement.",
       langues: "Ghassen parle :",
       permisNone: "Pour toute question administrative, contactez Ghassen directement.",
-      experience: "Ghassen a effectué <strong>4 stages en entreprise</strong> dans l’informatique (2024 – 2026) : RIF, ACT, Esprit Entreprise et Horizon-Data. Il y a appris à respecter des procédures précises, à travailler en équipe et à tenir des délais.",
+      experience: "Ghassen a effectué <strong>7 stages en entreprise</strong> entre 2023 et 2026 : <strong>Res2Boost</strong> (marketing digital et contenu IA pour une start-up qui digitalise les restaurants : sites vitrines pour restaurants et cafés, réseaux sociaux), 4 stages en informatique (RIF, ACT, Esprit Entreprise, Horizon-Data) et 2 stages d’été chez <strong>Tunisie Télécom</strong> (activation de cartes SIM, déploiement de la fibre optique). Il y a appris à respecter des procédures précises, à travailler en équipe et à tenir des délais.",
       postes: "Ghassen recherche un emploi étudiant à temps partiel en <strong>grande distribution</strong> (mise en rayon, caisse), <strong>restauration</strong>, <strong>logistique</strong> ou <strong>commerce</strong>. Il est ouvert à d’autres postes étudiants.",
       lieu: function (z, m) { return "Ghassen est basé à Dijon et cherche un poste à " + (z || "Dijon") + "." + (m ? " " + m + "." : ""); },
       etudes: "Ghassen est élève ingénieur en informatique à l’ESPRIT (Tunisie), spécialité Cloud Computing, en semestre d’échange à l’ESEO Dijon jusqu’en février 2027. Il est titulaire d’une licence en systèmes informatiques (major de promotion).",
       hello: "Bonjour ! Que souhaitez-vous savoir ?",
       thanks: "Avec plaisir ! N’hésitez pas à contacter Ghassen directement.",
+      age: function (n) { return "Ghassen a " + n + " ans."; },
       fallback: "Je n’ai pas cette information. Le plus simple est d’écrire directement à Ghassen :"
     },
     en: {
@@ -97,12 +98,13 @@
       contactEnd: "Mention the position and hours offered; he will get back to you quickly.",
       langues: "Ghassen speaks:",
       permisNone: "For any administrative question, please contact Ghassen directly.",
-      experience: "Ghassen has completed <strong>4 company internships</strong> in IT (2024 – 2026): RIF, ACT, Esprit Entreprise and Horizon-Data. There he learned to follow precise procedures, work in a team and meet deadlines.",
+      experience: "Ghassen has completed <strong>7 company internships</strong> between 2023 and 2026: <strong>Res2Boost</strong> (digital marketing and AI content for a start-up digitalising restaurants: websites for restaurants and cafés, social media), 4 IT internships (RIF, ACT, Esprit Entreprise, Horizon-Data) and 2 summer internships at <strong>Tunisie Telecom</strong> (SIM card activation, fibre-optic deployment). There he learned to follow precise procedures, work in a team and meet deadlines.",
       postes: "Ghassen is looking for a part-time student job in <strong>supermarkets</strong> (shelf stocking, checkout), <strong>food service</strong>, <strong>logistics</strong> or <strong>retail</strong>. He is open to other student positions.",
       lieu: function (z, m) { return "Ghassen is based in Dijon and is looking for a job in " + (z || "Dijon") + "." + (m ? " " + m + "." : ""); },
       etudes: "Ghassen is a computer engineering student at ESPRIT (Tunisia), specialising in Cloud Computing, on an exchange semester at ESEO Dijon until February 2027. He holds a bachelor’s degree in computer systems (top of his class).",
       hello: "Hello! What would you like to know?",
       thanks: "You’re welcome! Feel free to contact Ghassen directly.",
+      age: function (n) { return "Ghassen is " + n + " years old."; },
       fallback: "I don’t have that information. The easiest way is to write to Ghassen directly:"
     },
     de: {
@@ -128,13 +130,46 @@
       contactEnd: "Nennen Sie die Stelle und die Arbeitszeiten; er antwortet schnell.",
       langues: "Ghassen spricht:",
       permisNone: "Bei Verwaltungsfragen wenden Sie sich bitte direkt an Ghassen.",
-      experience: "Ghassen hat <strong>4 Praktika in Unternehmen</strong> im IT-Bereich absolviert (2024 – 2026): RIF, ACT, Esprit Entreprise und Horizon-Data. Dort hat er gelernt, genaue Abläufe einzuhalten, im Team zu arbeiten und Fristen einzuhalten.",
+      experience: "Ghassen hat zwischen 2023 und 2026 <strong>7 Praktika in Unternehmen</strong> absolviert: <strong>Res2Boost</strong> (Digital Marketing und KI-Content für ein Start-up, das Restaurants digitalisiert: Websites für Restaurants und Cafés, Social Media), 4 IT-Praktika (RIF, ACT, Esprit Entreprise, Horizon-Data) und 2 Sommerpraktika bei <strong>Tunisie Telecom</strong> (Aktivierung von SIM-Karten, Glasfaserausbau). Dort hat er gelernt, genaue Abläufe einzuhalten, im Team zu arbeiten und Fristen einzuhalten.",
       postes: "Ghassen sucht einen Studentenjob in Teilzeit im <strong>Lebensmittelhandel</strong> (Regale auffüllen, Kasse), in der <strong>Gastronomie</strong>, <strong>Logistik</strong> oder im <strong>Einzelhandel</strong>. Er ist auch für andere Studentenjobs offen.",
       lieu: function (z, m) { return "Ghassen wohnt in Dijon und sucht eine Stelle in " + (z || "Dijon") + "." + (m ? " " + m + "." : ""); },
       etudes: "Ghassen studiert Informatik (Ingenieurstudium) an der ESPRIT (Tunesien), Schwerpunkt Cloud Computing, und ist bis Februar 2027 im Austauschsemester an der ESEO Dijon. Er hat einen Bachelor in Informatiksystemen (Jahrgangsbester).",
       hello: "Hallo! Was möchten Sie wissen?",
       thanks: "Gern geschehen! Kontaktieren Sie Ghassen gerne direkt.",
+      age: function (n) { return "Ghassen ist " + n + " Jahre alt."; },
       fallback: "Diese Information habe ich leider nicht. Am einfachsten schreiben Sie Ghassen direkt:"
+    },
+    es: {
+      launcher: "¿Alguna pregunta?",
+      title: "Preguntas frecuentes",
+      sub: "Asistente automático · respuestas sacadas de esta página",
+      close: "Cerrar",
+      placeholder: "Escriba su pregunta…",
+      inputLabel: "Su pregunta",
+      send: "Enviar",
+      greet: "¡Hola! Respondo a las preguntas frecuentes sobre la candidatura de Ghassen, con la información de esta página. Elija un tema o escriba su pregunta.",
+      chips: { dispo: "Disponibilidad", duree: "¿Hasta cuándo?", cv: "Ver el CV", contact: "Contactar con Ghassen", langues: "Idiomas", permis: "Permiso de trabajo", experience: "Experiencia", postes: "Puestos buscados" },
+      lStart: "Inicio:", lHours: "Horas:", lMorn: "Mañanas:", lEve: "Tardes:", lWe: "Fines de semana:", lHol: "Vacaciones:",
+      lEmail: "Correo:", lTel: "Teléfono:",
+      dispo: "Disponibilidad de Ghassen:",
+      dispoLink: "Ver el horario detallado",
+      dispoPending: "Su horario está pendiente de confirmación. Lo más sencillo es contactarle para acordar un horario.",
+      duree: function (d) { return (d ? "Ghassen puede empezar: <strong>" + d + "</strong>. " : "") + "Busca un empleo a tiempo parcial: contrato temporal, extras o refuerzos de fin de año."; },
+      cvYes: "Aquí está el CV de Ghassen (PDF, en francés):",
+      cvOpen: "Abrir el CV",
+      cvNo: "El CV está disponible bajo petición: escriba a Ghassen y se lo enviará por correo.",
+      contact: "Puede contactar con Ghassen:",
+      contactEnd: "Indique el puesto y el horario propuestos; le responderá rápidamente.",
+      langues: "Ghassen habla:",
+      permisNone: "Para cualquier cuestión administrativa, contacte directamente con Ghassen.",
+      experience: "Ghassen ha realizado <strong>7 prácticas en empresa</strong> entre 2023 y 2026: <strong>Res2Boost</strong> (marketing digital y contenido con IA para una start-up que digitaliza restaurantes: webs para restaurantes y cafeterías, redes sociales), 4 prácticas en informática (RIF, ACT, Esprit Entreprise, Horizon-Data) y 2 prácticas de verano en <strong>Tunisie Telecom</strong> (activación de tarjetas SIM, despliegue de fibra óptica). Allí aprendió a seguir procedimientos precisos, a trabajar en equipo y a cumplir plazos.",
+      postes: "Ghassen busca un empleo a tiempo parcial en <strong>supermercados</strong> (reposición, caja), <strong>hostelería</strong>, <strong>logística</strong> o <strong>comercio</strong>. Está abierto a otros puestos para estudiantes.",
+      lieu: function (z, m) { return "Ghassen vive en Dijon y busca un puesto en " + (z || "Dijon") + "." + (m ? " " + m + "." : ""); },
+      etudes: "Ghassen estudia ingeniería informática en ESPRIT (Túnez), especialidad Cloud Computing, y está de intercambio en la ESEO de Dijon hasta febrero de 2027. Es licenciado en sistemas informáticos (número uno de su promoción).",
+      hello: "¡Hola! ¿Qué desea saber?",
+      thanks: "¡Con mucho gusto! No dude en contactar directamente con Ghassen.",
+      age: function (n) { return "Ghassen tiene " + n + " años."; },
+      fallback: "No tengo esa información. Lo más sencillo es escribir directamente a Ghassen:"
     }
   };
 
@@ -169,6 +204,10 @@
     postes: function (t) { return t.postes; },
     lieu: function (t) { return t.lieu(val(C.zone), val(P.mobilite)); },
     etudes: function (t) { return t.etudes; },
+    age: function (t) {
+      var n = val(P.age);
+      return n ? t.age(n) : ANSWERS.fallback(t);
+    },
     hello: function (t) { return t.hello; },
     thanks: function (t) { return t.thanks; },
     fallback: function (t) { return t.fallback + contactLinks(t); }
@@ -179,34 +218,35 @@
    * couvrent le plus de caractères l'emporte (les expressions longues gagnent).
    */
   var KEYWORDS = {
-    permis: ["titre de sejour", "sejour", "autoris", "visa", "papiers", "permis de travail", "droit de travailler",
+    permis: ["permiso de trabajo", "residencia", "papeles", "titre de sejour", "sejour", "autoris", "visa", "papiers", "permis de travail", "droit de travailler",
       "work permit", "right to work", "allowed to work", "authori", "residence", "legal",
       "arbeitserlaubnis", "aufenthalt", "erlaubt", "darf", "964"],
-    lieu: ["habite", "ville", "lieu", "adresse", "permis", "voiture", "vehicule", "conduire", "transport", "deplac",
+    lieu: ["donde vive", "ciudad", "carnet", "coche", "habite", "ville", "lieu", "adresse", "permis", "voiture", "vehicule", "conduire", "transport", "deplac",
       "where", "location", "based", "live", "driving", " car", "drive",
       "wohn", "stadt", " wo ", "fuhrerschein", "fuehrerschein", " auto", "mobil"],
-    dispo: ["dispo", "horaire", "quand", "heure", "planning", "emploi du temps", "soir", "week", "samedi", "dimanche", "vacance", "matin",
+    dispo: ["disponib", "horario", "cuando", "fin de semana", "sabado", "domingo", "turno", "dispo", "horaire", "quand", "heure", "planning", "emploi du temps", "soir", "week", "samedi", "dimanche", "vacance", "matin",
       "available", "availab", "hours", "when", "schedule", "evening", "saturday", "sunday", "morning", "shift",
       "verfugbar", "zeiten", "wann", "stunden", "abend", "wochenende", "samstag", "sonntag", "ferien", "morgen", "schicht", "dienstplan"],
-    duree: ["jusqu a quand", "jusqu", "combien de temps", "duree", "contrat", "cdd", "cdi", "extra", "renfort", "commencer", "debut", "demarrer",
+    duree: ["hasta cuando", "cuanto tiempo", "contrato", "empezar", "jusqu a quand", "jusqu", "combien de temps", "duree", "contrat", "cdd", "cdi", "extra", "renfort", "commencer", "debut", "demarrer",
       "until", "how long", "contract", "start", "fixed-term", "temporary",
       "wie lange", "bis wann", "vertrag", "befrist", "aushilfe", "anfangen", "beginn", "ab wann"],
     cv: ["cv", "resume", "curriculum", "lebenslauf", "pdf"],
-    contact: ["contact", "joindre", "mail", "telephone", " tel", "numero", "appeler",
+    contact: ["contacto", "correo", "llamar", "contact", "joindre", "mail", "telephone", " tel", "numero", "appeler",
       "phone", "call", "reach", "number", "kontakt", "telefon", "anruf", "erreich", "nummer"],
-    langues: ["langue", "parle", "anglais", "arabe", "francais", "allemand",
+    langues: ["idioma", "habla", "ingles", "frances", "aleman", "langue", "parle", "anglais", "arabe", "francais", "allemand",
       "language", "speak", "english", "arabic", "french", "german",
       "sprache", "sprich", "englisch", "arabisch", "franzosisch", "deutsch"],
-    experience: ["experience", "stage", "deja travaille", "internship", "worked", "work experience",
+    experience: ["experiencia", "practicas", "trabajado", "experience", "stage", "res2boost", "horizon-data", "horizon data", "tunisie telecom", "telecom", "fibre", "fiber", "deja travaille", "internship", "worked", "work experience",
       "erfahrung", "praktik", "gearbeitet"],
-    postes: ["poste", "secteur", "caisse", "rayon", "restau", "logisti", "magasin", "supermarch", "vente", "metier",
+    postes: ["puesto", "cajero", "reponedor", "almacen", "hosteleria", "tienda", "poste", "secteur", "caisse", "rayon", "restau", "logisti", "magasin", "supermarch", "vente", "metier",
       "position", "role", "sector", "cashier", "shelf", "warehouse", "retail",
       "stelle", "branche", "kasse", "lager", "verkauf", "gastro", "supermarkt"],
-    etudes: ["etudie", "etude", "ecole", "eseo", "esprit", "formation", "diplome", "ingenieur", "universit", "licence",
+    etudes: ["estudi", "ingeniero", "universidad", "carrera", "etudie", "etude", "ecole", "eseo", "esprit", "formation", "diplome", "ingenieur", "universit", "licence",
       "study", "studies", "school", "degree", "engineer", "bachelor",
       "studium", "studier", "hochschule", "ausbildung"],
-    hello: ["bonjour", "salut", "coucou", "bonsoir", "hello", " hi ", "hey", "hallo", "guten tag", "servus", "moin"],
-    thanks: ["merci", "thank", "thx", "danke"]
+    age: ["cuantos anos", "edad", "quel age", " age ", "ans a-t-il", "how old", " age?", "wie alt", " alter "],
+    hello: ["hola", "buenos dias", "bonjour", "salut", "coucou", "bonsoir", "hello", " hi ", "hey", "hallo", "guten tag", "servus", "moin"],
+    thanks: ["gracias", "merci", "thank", "thx", "danke"]
   };
 
   function normalize(s) {
@@ -227,6 +267,14 @@
   var CHIP_ORDER = ["dispo", "cv", "contact", "duree", "langues", "permis", "experience", "postes"];
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Avatar de l'assistant : la photo de config.js, sinon le monogramme.
+  function chatAvatar() {
+    var photo = S.tr(S.profil.photo || "").trim();
+    return photo
+      ? '<span class="chat-avatar has-photo" aria-hidden="true"><img src="' + esc(photo) + '" alt="" width="76" height="76"></span>'
+      : '<span class="chat-avatar" aria-hidden="true">GK</span>';
+  }
+
   var launcher = document.createElement("button");
   launcher.type = "button";
   launcher.className = "chat-launcher";
@@ -245,7 +293,7 @@
   panel.setAttribute("aria-labelledby", "chat-title");
   panel.innerHTML =
     '<header class="chat-head">' +
-      '<span class="chat-avatar" aria-hidden="true">GK</span>' +
+      chatAvatar() +
       '<div><h2 id="chat-title" class="chat-title"></h2><p class="chat-sub"></p></div>' +
       '<button type="button" class="chat-close"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>' +
     "</header>" +

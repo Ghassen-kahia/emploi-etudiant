@@ -15,7 +15,7 @@
  *
  *  TRADUCTIONS : un texte peut être écrit simplement ("…"), il sera
  *  alors identique dans les trois langues, ou sous la forme
- *  { fr: "…", en: "…", de: "…" } pour être traduit (FR / EN / DE).
+ *  { fr: "…", en: "…", de: "…", es: "…" } pour être traduit (FR / EN / DE / ES).
  *  Les autres textes du site se traduisent dans assets/js/i18n.js.
  */
 window.PROFIL = {
@@ -28,7 +28,7 @@ window.PROFIL = {
     github: "https://github.com/Ghassen-kahia",
     portfolio: "https://ghassen-kahia.github.io/",
     ville: "Dijon",
-    zone: { fr: "Dijon et alentours", en: "Dijon and surrounding area", de: "Dijon und Umgebung" }
+    zone: { fr: "Dijon et alentours", en: "Dijon and surrounding area", de: "Dijon und Umgebung", es: "Dijon y alrededores" }
   },
 
   /* ---------- Photo (facultatif) ----------
@@ -38,16 +38,37 @@ window.PROFIL = {
    */
   photo: "assets/img/photo.jpg",
 
+  /* ---------- Logos des établissements et entreprises (facultatif) ----------
+   * Déposez le fichier (SVG ou PNG, fond transparent ou blanc) dans
+   * assets/img/logos/ et indiquez son chemin, ex. "assets/img/logos/act.png".
+   * Laisser "" : un badge avec le nom s'affiche à la place.
+   */
+  logos: {
+    issat: "assets/img/logos/issat.jpg",
+    rif: "assets/img/logos/rif.png",
+    act: "assets/img/logos/act.svg",
+    espritEntreprise: "assets/img/logos/esprit.svg",   // ESPRIT Entreprise utilise le logo ESPRIT
+    horizonData: "assets/img/logos/horizon-data.png",
+    res2boost: "assets/img/logos/res2boost.jpg",
+    tunisieTelecom: "assets/img/logos/tunisie-telecom.png"
+  },
+
+  /* ---------- Âge (facultatif) ----------
+   * Un simple nombre, à mettre à jour après votre anniversaire.
+   * Mettre "" pour ne pas l'afficher.
+   */
+  age: 25,
+
   /* ---------- Mobilité (facultatif) ----------
    * Rassure sur les horaires matinaux ou tardifs. Uniquement si c'est exact.
    * ex. "Tram et bus Divia" · "Vélo" · "Permis B"
    */
-  mobilite: { fr: "Titulaire du permis B", en: "Full driving licence (category B)", de: "Führerschein Klasse B" },
+  mobilite: { fr: "Titulaire du permis B", en: "Full driving licence (category B)", de: "Führerschein Klasse B", es: "Carnet de conducir B" },
 
   /* ---------- Date de mise à jour de la page ----------
    * Affichée en bas de page : montre au recruteur que les informations sont à jour.
    */
-  miseAJourPage: { fr: "11 octobre 2026", en: "11 October 2026", de: "11. Oktober 2026" },
+  miseAJourPage: { fr: "11 octobre 2026", en: "11 October 2026", de: "11. Oktober 2026", es: "11 de octubre de 2026" },
 
   /* ---------- CV ----------
    * Déposez votre fichier PDF dans le dossier /cv/ et indiquez son nom ici.
@@ -65,7 +86,7 @@ window.PROFIL = {
    *   "Disponible à partir du 3 novembre"
    *   "Disponible soirs et week-ends"
    */
-  libelleDisponibilite: { fr: "Disponible immédiatement", en: "Available immediately", de: "Ab sofort verfügbar" },
+  libelleDisponibilite: { fr: "Disponible immédiatement", en: "Available immediately", de: "Ab sofort verfügbar", es: "Disponible de inmediato" },
 
   /* ---------- Disponibilités hebdomadaires ----------
    * confirme : passez à true UNIQUEMENT quand votre emploi du temps est connu.
@@ -83,21 +104,21 @@ window.PROFIL = {
   disponibilites: {
     confirme: true,
     jours: {
-      lundi:    { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr" }] },
-      mardi:    { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr" }] },
-      mercredi: { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr" }] },
-      jeudi:    { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr" }] },
-      vendredi: { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr" }] },
+      lundi:    { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr", es: "A partir de las 18:00" }] },
+      mardi:    { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr", es: "A partir de las 18:00" }] },
+      mercredi: { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr", es: "A partir de las 18:00" }] },
+      jeudi:    { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr", es: "A partir de las 18:00" }] },
+      vendredi: { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr", es: "A partir de las 18:00" }] },
       samedi:   { statut: "disponible", creneaux: [] },
       dimanche: { statut: "disponible", creneaux: [] }
     },
     // Résumés affichés sous le planning (laisser "" pour masquer)
     matins: "",            // ex. "Ouvertures possibles dès 6h le samedi" (utile en grande distribution)
-    soirs: { fr: "En semaine, à partir de 18h", en: "Weekdays from 6 pm", de: "Werktags ab 18 Uhr" },
-    weekends: { fr: "Samedi et dimanche, toute la journée", en: "Saturday and Sunday, all day", de: "Samstag und Sonntag, ganztägig" },
-    vacances: { fr: "Disponible pendant les vacances scolaires", en: "Available during school holidays", de: "In den Schulferien verfügbar" },
-    heuresParSemaine: { fr: "15 à 20 heures par semaine", en: "15 to 20 hours per week", de: "15 bis 20 Stunden pro Woche" },
-    debut: { fr: "Immédiatement, jusqu’à fin février 2027", en: "Immediately, until the end of February 2027", de: "Ab sofort bis Ende Februar 2027" }
+    soirs: { fr: "En semaine, à partir de 18h", en: "Weekdays from 6 pm", de: "Werktags ab 18 Uhr", es: "Entre semana, a partir de las 18:00" },
+    weekends: { fr: "Samedi et dimanche, toute la journée", en: "Saturday and Sunday, all day", de: "Samstag und Sonntag, ganztägig", es: "Sábado y domingo, todo el día" },
+    vacances: { fr: "Disponible pendant les vacances scolaires", en: "Available during school holidays", de: "In den Schulferien verfügbar", es: "Disponible durante las vacaciones escolares" },
+    heuresParSemaine: { fr: "15 à 20 heures par semaine", en: "15 to 20 hours per week", de: "15 bis 20 Stunden pro Woche", es: "De 15 a 20 horas semanales" },
+    debut: { fr: "Immédiatement, jusqu’à fin février 2027", en: "Immediately, until the end of February 2027", de: "Ab sofort bis Ende Februar 2027", es: "De inmediato, hasta finales de febrero de 2027" }
   },
 
   /* ---------- Langues ----------
@@ -106,16 +127,16 @@ window.PROFIL = {
    */
   langues: [
     {
-      langue: { fr: "Français", en: "French", de: "Französisch" },
-      niveau: { fr: "Courant (B2)", en: "Fluent (B2)", de: "Fließend (B2)" }
+      langue: { fr: "Français", en: "French", de: "Französisch", es: "Francés" },
+      niveau: { fr: "Courant (B2)", en: "Fluent (B2)", de: "Fließend (B2)", es: "Fluido (B2)" }
     },
     {
-      langue: { fr: "Anglais", en: "English", de: "Englisch" },
-      niveau: { fr: "Courant (B2)", en: "Fluent (B2)", de: "Fließend (B2)" }
+      langue: { fr: "Anglais", en: "English", de: "Englisch", es: "Inglés" },
+      niveau: { fr: "Courant (B2)", en: "Fluent (B2)", de: "Fließend (B2)", es: "Fluido (B2)" }
     },
     {
-      langue: { fr: "Arabe", en: "Arabic", de: "Arabisch" },
-      niveau: { fr: "Langue maternelle", en: "Native", de: "Muttersprache" }
+      langue: { fr: "Arabe", en: "Arabic", de: "Arabisch", es: "Árabe" },
+      niveau: { fr: "Langue maternelle", en: "Native", de: "Muttersprache", es: "Lengua materna" }
     }
   ],
 
@@ -127,6 +148,7 @@ window.PROFIL = {
   autorisationTravail: {
     fr: "Titre de séjour étudiant, autorisé à travailler (jusqu’à 964 h/an)",
     en: "Student residence permit, authorised to work (up to 964 h/year)",
-    de: "Studentischer Aufenthaltstitel mit Arbeitserlaubnis (bis zu 964 Std./Jahr)"
+    de: "Studentischer Aufenthaltstitel mit Arbeitserlaubnis (bis zu 964 Std./Jahr)",
+    es: "Permiso de residencia de estudiante, autorizado a trabajar (hasta 964 h/año)"
   }
 };

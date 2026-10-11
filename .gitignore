@@ -2,3 +2,6 @@ _site/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Vidéos de présentation (trop lourdes pour le dépôt)
+presentation/
