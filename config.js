@@ -12,6 +12,11 @@
  *
  *  N'inscrivez ici que des informations que vous acceptez de rendre
  *  publiques (pas d'adresse postale, pas de numéro de titre de séjour).
+ *
+ *  TRADUCTIONS : un texte peut être écrit simplement ("…"), il sera
+ *  alors identique dans les trois langues, ou sous la forme
+ *  { fr: "…", en: "…", de: "…" } pour être traduit (FR / EN / DE).
+ *  Les autres textes du site se traduisent dans assets/js/i18n.js.
  */
 window.PROFIL = {
 
@@ -23,7 +28,7 @@ window.PROFIL = {
     github: "https://github.com/Ghassen-kahia",
     portfolio: "https://ghassen-kahia.github.io/",
     ville: "Dijon",
-    zone: "Dijon et alentours"   // ex. "Dijon, Chenôve, Quetigny, Talant…"
+    zone: { fr: "Dijon et alentours", en: "Dijon and surrounding area", de: "Dijon und Umgebung" }
   },
 
   /* ---------- Photo (facultatif) ----------
@@ -37,12 +42,12 @@ window.PROFIL = {
    * Rassure sur les horaires matinaux ou tardifs. Uniquement si c'est exact.
    * ex. "Tram et bus Divia" · "Vélo" · "Permis B"
    */
-  mobilite: "Titulaire du permis B",
+  mobilite: { fr: "Titulaire du permis B", en: "Full driving licence (category B)", de: "Führerschein Klasse B" },
 
   /* ---------- Date de mise à jour de la page ----------
    * Affichée en bas de page : montre au recruteur que les informations sont à jour.
    */
-  miseAJourPage: "11 octobre 2026",
+  miseAJourPage: { fr: "11 octobre 2026", en: "11 October 2026", de: "11. Oktober 2026" },
 
   /* ---------- CV ----------
    * Déposez votre fichier PDF dans le dossier /cv/ et indiquez son nom ici.
@@ -60,7 +65,7 @@ window.PROFIL = {
    *   "Disponible à partir du 3 novembre"
    *   "Disponible soirs et week-ends"
    */
-  libelleDisponibilite: "Disponible immédiatement",
+  libelleDisponibilite: { fr: "Disponible immédiatement", en: "Available immediately", de: "Ab sofort verfügbar" },
 
   /* ---------- Disponibilités hebdomadaires ----------
    * confirme : passez à true UNIQUEMENT quand votre emploi du temps est connu.
@@ -78,21 +83,21 @@ window.PROFIL = {
   disponibilites: {
     confirme: true,
     jours: {
-      lundi:    { statut: "partiel",    creneaux: ["À partir de 18h00"] },
-      mardi:    { statut: "partiel",    creneaux: ["À partir de 18h00"] },
-      mercredi: { statut: "partiel",    creneaux: ["À partir de 18h00"] },
-      jeudi:    { statut: "partiel",    creneaux: ["À partir de 18h00"] },
-      vendredi: { statut: "partiel",    creneaux: ["À partir de 18h00"] },
+      lundi:    { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr" }] },
+      mardi:    { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr" }] },
+      mercredi: { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr" }] },
+      jeudi:    { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr" }] },
+      vendredi: { statut: "partiel",    creneaux: [{ fr: "À partir de 18h00", en: "From 6 pm", de: "Ab 18:00 Uhr" }] },
       samedi:   { statut: "disponible", creneaux: [] },
       dimanche: { statut: "disponible", creneaux: [] }
     },
     // Résumés affichés sous le planning (laisser "" pour masquer)
     matins: "",            // ex. "Ouvertures possibles dès 6h le samedi" (utile en grande distribution)
-    soirs: "En semaine, à partir de 18h",
-    weekends: "Samedi et dimanche, toute la journée",
-    vacances: "Disponible pendant les vacances scolaires",
-    heuresParSemaine: "15 à 20 heures par semaine",
-    debut: "Immédiatement, jusqu’à fin février 2027"
+    soirs: { fr: "En semaine, à partir de 18h", en: "Weekdays from 6 pm", de: "Werktags ab 18 Uhr" },
+    weekends: { fr: "Samedi et dimanche, toute la journée", en: "Saturday and Sunday, all day", de: "Samstag und Sonntag, ganztägig" },
+    vacances: { fr: "Disponible pendant les vacances scolaires", en: "Available during school holidays", de: "In den Schulferien verfügbar" },
+    heuresParSemaine: { fr: "15 à 20 heures par semaine", en: "15 to 20 hours per week", de: "15 bis 20 Stunden pro Woche" },
+    debut: { fr: "Immédiatement, jusqu’à fin février 2027", en: "Immediately, until the end of February 2027", de: "Ab sofort bis Ende Februar 2027" }
   },
 
   /* ---------- Langues ----------
@@ -100,9 +105,18 @@ window.PROFIL = {
    * ex. { langue: "Français", niveau: "Courant" }
    */
   langues: [
-    { langue: "Français", niveau: "Courant (B2)" },
-    { langue: "Anglais",  niveau: "Courant (B2)" },
-    { langue: "Arabe",    niveau: "Langue maternelle" }
+    {
+      langue: { fr: "Français", en: "French", de: "Französisch" },
+      niveau: { fr: "Courant (B2)", en: "Fluent (B2)", de: "Fließend (B2)" }
+    },
+    {
+      langue: { fr: "Anglais", en: "English", de: "Englisch" },
+      niveau: { fr: "Courant (B2)", en: "Fluent (B2)", de: "Fließend (B2)" }
+    },
+    {
+      langue: { fr: "Arabe", en: "Arabic", de: "Arabisch" },
+      niveau: { fr: "Langue maternelle", en: "Native", de: "Muttersprache" }
+    }
   ],
 
   /* ---------- Autorisation de travail ----------
@@ -110,5 +124,9 @@ window.PROFIL = {
    * selon votre situation exacte. Ne mentionnez aucun numéro de document.
    * ex. "Titre de séjour étudiant autorisant une activité salariée à temps partiel"
    */
-  autorisationTravail: "Titre de séjour étudiant, autorisé à travailler (jusqu’à 964 h/an)"
+  autorisationTravail: {
+    fr: "Titre de séjour étudiant, autorisé à travailler (jusqu’à 964 h/an)",
+    en: "Student residence permit, authorised to work (up to 964 h/year)",
+    de: "Studentischer Aufenthaltstitel mit Arbeitserlaubnis (bis zu 964 Std./Jahr)"
+  }
 };

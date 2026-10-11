@@ -22,7 +22,9 @@ C'est la même approche que le portfolio technique (https://ghassen-kahia.github
 │   └── Ghassen_Kahia_CVJob_Etudiant.pdf   ← votre CV
 ├── assets/
 │   ├── css/style.css       Styles (mobile d'abord, + feuille d'impression)
-│   ├── js/main.js          Remplit la page depuis config.js, menu, copie e-mail
+│   ├── js/main.js          Remplit la page depuis config.js, langue, menu, copie e-mail
+│   ├── js/i18n.js          Traductions anglais / allemand des textes fixes
+│   ├── js/chat.js          Assistant « Questions fréquentes » (sans IA, sans serveur)
 │   ├── fonts/              Newsreader + Public Sans, auto-hébergées (licence OFL)
 │   └── img/                favicon, icône iOS, aperçu des liens (og-image.png), qr-site.svg
 ├── robots.txt, sitemap.xml
@@ -137,7 +139,43 @@ python -c "import segno; segno.make('https://ghassen-kahia.github.io/emploi-etud
 
 (Puis remplacez `width="33" height="33"` par `viewBox="0 0 33 33"` dans le fichier pour qu'il s'agrandisse correctement.)
 
-### 7. Textes
+### 7. Langues du site (FR / EN / DE)
+
+Le visiteur choisit la langue en haut à droite. Son choix est mémorisé. On peut aussi partager
+un lien directement dans une langue :
+
+- https://ghassen-kahia.github.io/emploi-etudiant/ (français, par défaut)
+- https://ghassen-kahia.github.io/emploi-etudiant/?lang=en
+- https://ghassen-kahia.github.io/emploi-etudiant/?lang=de
+
+Où se trouvent les textes :
+
+| Texte | Fichier |
+|---|---|
+| Français (textes fixes) | `index.html` |
+| Anglais et allemand (textes fixes) | `assets/js/i18n.js` (même clé que l'attribut `data-i18n` dans `index.html`) |
+| Disponibilités, langues, zone… | `config.js`, sous la forme `{ fr: "…", en: "…", de: "…" }` |
+| Réponses de l'assistant | `assets/js/chat.js`, section TEXTES |
+
+Si vous modifiez une phrase en français dans `index.html`, pensez à mettre à jour sa traduction
+dans `i18n.js`. Une valeur de `config.js` écrite simplement (`"…"`) s'affiche telle quelle dans les trois langues.
+Le CV PDF et les cartes imprimables restent en français.
+
+### 8. Assistant « Questions fréquentes »
+
+Le bouton en bas à droite ouvre un petit assistant. Il propose des sujets (disponibilités, CV, contact,
+langues, autorisation de travail, expérience…) et comprend les questions tapées en français, anglais ou
+allemand grâce à des mots-clés.
+
+- **Pas d'IA, pas de serveur, gratuit.** Les réponses sont construites à partir de `config.js` et des faits
+  publiés sur la page : l'assistant ne peut rien inventer. Quand il ne sait pas, il renvoie vers votre e-mail.
+- **Rien n'est envoyé ni enregistré.** Les questions restent dans le navigateur du visiteur.
+- Pour changer une réponse : `assets/js/chat.js`, section TEXTES. Pour mieux reconnaître une question,
+  ajoutez des mots-clés (en minuscules, sans accents) dans la section MOTS-CLÉS.
+- Un vrai chatbot IA (réponses libres) demanderait un petit serveur pour cacher la clé d'API, un coût par
+  message, et il pourrait affirmer des choses inexactes à votre sujet. Il n'est donc pas inclus.
+
+### 9. Textes
 
 Les textes fixes (présentation, atouts, « Pourquoi me recruter ? ») se trouvent directement dans
 `index.html`. Chaque section est repérée par un commentaire `<!-- ============ NOM ============ -->`.
@@ -231,6 +269,10 @@ transfère par e-mail.
 - [ ] Sur mobile, la barre « Mon CV / Me contacter » apparaît après l'introduction et disparaît sur Contact
 - [ ] « Ajouter à mes contacts » importe bien la fiche sur Android et iPhone
 - [ ] QR code des cartes imprimées scanné avec un téléphone → ouvre le site en ligne
+- [ ] FR / EN / DE : chaque langue s'affiche entièrement (aucun texte resté en français par erreur)
+- [ ] `?lang=en` et `?lang=de` ouvrent directement la bonne langue
+- [ ] Assistant : chaque sujet répond correctement ; une question inconnue renvoie vers l'e-mail
+- [ ] Assistant au clavier : Tab jusqu'au bouton, Entrée pour ouvrir, Échap pour fermer
 - [ ] Impression (Ctrl+P) : la page donne une fiche lisible
 
 **Liens**

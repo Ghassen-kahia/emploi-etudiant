@@ -114,6 +114,8 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       var P = window.PROFIL || {}, c = P.contact || {};
+      // Les cartes sont destinées aux magasins français : texte français de config.js.
+      function fr(v) { return v && typeof v === "object" ? (v.fr || "") : (v || ""); }
       var sheet = document.getElementById("sheet");
       var tpl = document.getElementById("tpl");
       function fill(el, value, label) {
@@ -123,11 +125,11 @@
       }
       for (var i = 0; i < 4; i++) {
         var card = tpl.content.cloneNode(true);
-        fill(card.querySelector("[data-zone]"), c.zone, "zone");
-        var dispo = P.libelleDisponibilite || "";
+        fill(card.querySelector("[data-zone]"), fr(c.zone), "zone");
+        var dispo = fr(P.libelleDisponibilite);
         if (dispo) card.querySelector("[data-dispo]").textContent = dispo.replace(/^Disponibilités\s+/i, "");
-        fill(card.querySelector("[data-email]"), c.email, "email");
-        fill(card.querySelector("[data-phone]"), c.telephone, "");
+        fill(card.querySelector("[data-email]"), fr(c.email), "email");
+        fill(card.querySelector("[data-phone]"), fr(c.telephone), "");
         sheet.appendChild(card);
       }
     });
