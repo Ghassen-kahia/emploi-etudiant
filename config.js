@@ -22,7 +22,7 @@ window.PROFIL = {
 
   /* ---------- Contact ---------- */
   contact: {
-    email: "ghassenkahya@gmail.com",
+    email: "ghassenkahia.pro@gmail.com",
     telephone: "+33 7 46 50 35 73",   // déjà visible dans le CV ; mettre "" pour le retirer du site
     linkedin: "",       // ex. "https://www.linkedin.com/in/votre-profil/"
     github: "https://github.com/Ghassen-kahia",
@@ -36,7 +36,7 @@ window.PROFIL = {
    * (ex. 600 × 600 px, JPG < 150 Ko). Placez-la dans assets/img/.
    * Laisser "" pour afficher le monogramme « GK » à la place.
    */
-  photo: "assets/img/photo.jpg",
+  photo: "assets/img/me.jpeg",
 
   /* ---------- Logos des établissements et entreprises (facultatif) ----------
    * Déposez le fichier (SVG ou PNG, fond transparent ou blanc) dans

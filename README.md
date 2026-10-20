@@ -111,7 +111,7 @@ N'indiquez que ce que vous pouvez justifier. Aucun numéro de document.
 ### 5. Photo, mobilité, date de mise à jour (facultatif)
 
 ```js
-photo: "assets/img/photo.jpg",          // carrée, ~600 px, < 150 Ko ; sinon monogramme « GK »
+photo: "assets/img/me.jpeg",          // carrée, ~600 px, < 150 Ko ; sinon monogramme « GK »
 mobilite: "Tram et bus Divia",          // ligne « Mobilité » dans la fiche En bref
 miseAJourPage: "11 octobre 2026",       // affichée en pied de page
 disponibilites: { matins: "Ouvertures possibles dès 6h le samedi", ... }
