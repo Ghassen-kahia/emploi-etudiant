@@ -50,7 +50,11 @@ window.PROFIL = {
     espritEntreprise: "assets/img/logos/esprit.svg",   // ESPRIT Entreprise utilise le logo ESPRIT
     horizonData: "assets/img/logos/horizon-data.png",
     res2boost: "assets/img/logos/res2boost.jpg",
-    tunisieTelecom: "assets/img/logos/tunisie-telecom.png"
+    tunisieTelecom: "assets/img/logos/tunisie-telecom.png",
+    carrefour: "assets/img/logos/carrefour.svg",   // Carrefour Market utilise le logo Carrefour
+    aziza: "assets/img/logos/aziza.png",
+    glovo: "assets/img/logos/glovo.svg",
+    leCoin: "assets/img/logos/le-coin.jpg"
   },
 
   /* ---------- Âge (facultatif) ----------
@@ -68,7 +72,7 @@ window.PROFIL = {
   /* ---------- Date de mise à jour de la page ----------
    * Affichée en bas de page : montre au recruteur que les informations sont à jour.
    */
-  miseAJourPage: { fr: "11 octobre 2026", en: "11 October 2026", de: "11. Oktober 2026", es: "11 de octubre de 2026" },
+  miseAJourPage: { fr: "27 octobre 2026", en: "27 October 2026", de: "27. Oktober 2026", es: "27 de octubre de 2026" },
 
   /* ---------- CV ----------
    * Déposez votre fichier PDF dans le dossier /cv/ et indiquez son nom ici.
@@ -76,7 +80,7 @@ window.PROFIL = {
    * le bouton affiche « CV disponible sur demande ».
    */
   cv: {
-    fichier: "cv/Ghassen_Kahia_CVJob_Etudiant.pdf",
+    fichier: "cv/Ghassen_Kahia_CVJob_Etudiant_v2.pdf",
     miseAJour: ""       // ex. "octobre 2026" — affiché sous le bouton si renseigné
   },
 
@@ -132,7 +136,7 @@ window.PROFIL = {
     },
     {
       langue: { fr: "Anglais", en: "English", de: "Englisch", es: "Inglés" },
-      niveau: { fr: "Courant (B2)", en: "Fluent (B2)", de: "Fließend (B2)", es: "Fluido (B2)" }
+      niveau: { fr: "Avancé (C1)", en: "Advanced (C1)", de: "Fortgeschritten (C1)", es: "Avanzado (C1)" }
     },
     {
       langue: { fr: "Arabe", en: "Arabic", de: "Arabisch", es: "Árabe" },

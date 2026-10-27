@@ -367,9 +367,10 @@
         var type = r.headers.get("content-type") || "";
         showCv(r.ok && type.indexOf("text/html") === -1);
       })
-      .catch(function () { showCv(false); });
+      .catch(function () { showCv(true); });
   } else {
-    showCv(false);
+    // Page ouverte en local (file://) : impossible de vérifier, on propose le CV configuré.
+    showCv(!!cvPath);
   }
 
   /* ---------- Changement de langue ---------- */
@@ -710,9 +711,15 @@
     var map = L.map(mapBox, { zoomControl: false, scrollWheelZoom: false, attributionControl: true }).setView([lat, lng], small ? 11 : 12);
     map.attributionControl.setPrefix(false);
     L.control.zoom({ position: "bottomright" }).addTo(map);
-    // Tuiles OpenStreetMap ; leur style clair / sombre est appliqué en CSS (.map-tiles) selon le thème.
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    // Tuiles OpenStreetMap en ligne. En local (file://), OSM refuse les requêtes sans
+    // en-tête Referer (« Access blocked ») : on utilise alors les tuiles Esri, sans clé.
+    var local = location.protocol === "file:";
+    L.tileLayer(local
+      ? "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
+      : "https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: local
+        ? 'Tiles &copy; <a href="https://www.esri.com/">Esri</a>'
+        : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       maxZoom: 19
     }).addTo(map);
 

@@ -369,7 +369,6 @@
         <dl class="dispo-notes" data-dispo-notes>
           <div data-show-if="disponibilites.debut"><dt data-i18n="dispo.debut">Début possible</dt><dd data-text="disponibilites.debut"></dd></div>
           <div data-show-if="disponibilites.heuresParSemaine"><dt data-i18n="dispo.heures">Volume souhaité</dt><dd data-text="disponibilites.heuresParSemaine"></dd></div>
-          <div data-show-if="disponibilites.matins"><dt data-i18n="dispo.matins">Tôt le matin</dt><dd data-text="disponibilites.matins"></dd></div>
           <div data-show-if="disponibilites.soirs"><dt data-i18n="dispo.soirs">En soirée</dt><dd data-text="disponibilites.soirs"></dd></div>
           <div data-show-if="disponibilites.weekends"><dt data-i18n="dispo.weekends">Week-ends</dt><dd data-text="disponibilites.weekends"></dd></div>
           <div data-show-if="disponibilites.vacances"><dt data-i18n="dispo.vacances">Vacances universitaires</dt><dd data-text="disponibilites.vacances"></dd></div>
@@ -425,7 +424,7 @@
           <!-- Aperçu du document + actions -->
           <div class="cv-doc reveal">
             <a class="cv-paper" data-cv-open target="_blank" rel="noopener">
-              <img src="assets/img/cv-preview.jpg" width="760" height="1074" loading="lazy" decoding="async"
+              <img src="assets/img/cv-preview.jpg" width="760" height="1076" loading="lazy" decoding="async"
                    alt="Aperçu de la première page de mon CV" data-i18n-attr="alt:cv.preview.alt">
               <span class="cv-paper-hint" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="16" height="16"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -443,7 +442,6 @@
                 </a>
                 <a class="btn btn-secondary" data-cv-open target="_blank" rel="noopener" data-i18n="cv.open">Ouvrir dans un nouvel onglet</a>
               </div>
-              <p class="note" data-show-if="cv.miseAJour"><span data-i18n="cv.updated">Mis à jour en</span> <span data-text="cv.miseAJour"></span></p>
             </div>
 
             <!-- État 2 : pas encore de PDF -->
@@ -463,6 +461,64 @@
               </h3>
               <ol class="timeline">
                 <li class="is-current">
+                  <p class="tl-when" data-i18n="exp.jobs.when">Étés 2023 – 2026</p>
+                  <p class="tl-what" data-i18n="exp.jobs.what"><strong>4 jobs d’été</strong> en grande distribution, restauration et livraison</p>
+                  <ul class="companies">
+                    <li class="company company-featured">
+                      <span class="tl-logo tl-logo-text" data-logo="carrefour" aria-hidden="true">CM</span>
+                      <div class="company-body">
+                        <span class="company-name">Carrefour Market</span>
+                        <span class="company-role"><span data-i18n="co.cm.role">Employé de mise en rayon</span></span>
+                        <span class="company-meta"><span class="company-dates" data-i18n="co.summer26">Été 2026</span> · <span data-i18n="co.tunisia">Tunisie</span></span>
+                        <ul class="company-missions">
+                          <li data-i18n="co.cm.m1">Mise en rayon et réapprovisionnement des produits</li>
+                          <li data-i18n="co.cm.m2">Réception, rangement et organisation des marchandises</li>
+                          <li data-i18n="co.cm.m3">Vérification des dates de péremption et étiquetage</li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="company company-featured">
+                      <span class="tl-logo tl-logo-text" data-logo="aziza" aria-hidden="true">AZ</span>
+                      <div class="company-body">
+                        <span class="company-name">Aziza</span>
+                        <span class="company-role"><span data-i18n="co.az.role">Caissier</span></span>
+                        <span class="company-meta"><span class="company-dates" data-i18n="co.summer25">Été 2025</span> · <span data-i18n="co.tunisia">Tunisie</span></span>
+                        <ul class="company-missions">
+                          <li data-i18n="co.az.m1">Accueil des clients et encaissement des achats</li>
+                          <li data-i18n="co.az.m2">Gestion des paiements et vérification des prix</li>
+                          <li data-i18n="co.az.m3">Entretien et organisation de l’espace de caisse</li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="company company-featured">
+                      <span class="tl-logo tl-logo-text" data-logo="glovo" aria-hidden="true">GL</span>
+                      <div class="company-body">
+                        <span class="company-name">Glovo</span>
+                        <span class="company-role"><span data-i18n="co.gl.role">Livreur</span></span>
+                        <span class="company-meta"><span class="company-dates" data-i18n="co.summer24">Été 2024</span> · <span data-i18n="co.tunisia">Tunisie</span></span>
+                        <ul class="company-missions">
+                          <li data-i18n="co.gl.m1">Préparation et livraison des commandes aux clients</li>
+                          <li data-i18n="co.gl.m2">Organisation des trajets et respect des délais</li>
+                          <li data-i18n="co.gl.m3">Communication avec les clients et gestion des imprévus</li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="company company-featured">
+                      <span class="tl-logo tl-logo-text" data-logo="leCoin" aria-hidden="true">LC</span>
+                      <div class="company-body">
+                        <span class="company-name">Restaurant Le Coin</span>
+                        <span class="company-role"><span data-i18n="co.lc.role">Plongeur</span></span>
+                        <span class="company-meta"><span class="company-dates" data-i18n="co.summer23">Été 2023</span> · Le Bardo, <span data-i18n="co.tunisia">Tunisie</span></span>
+                        <ul class="company-missions">
+                          <li data-i18n="co.lc.m1">Nettoyage de la vaisselle et du matériel de cuisine</li>
+                          <li data-i18n="co.lc.m2">Entretien et désinfection des espaces de travail</li>
+                          <li data-i18n="co.lc.m3">Respect des consignes d’hygiène et travail en équipe</li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li>
                   <p class="tl-when">06/2026 – 08/2026</p>
                   <p class="tl-what" data-i18n="exp.r2b.what"><strong>Marketing digital et contenu IA</strong> pour une start-up de la restauration</p>
                   <ul class="companies">

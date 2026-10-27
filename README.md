@@ -19,7 +19,7 @@ C'est la même approche que le portfolio technique (https://ghassen-kahia.github
 ├── 404.html                Page d'erreur autonome
 ├── carte.html              Cartes de candidature imprimables avec QR code (outil, non lié)
 ├── cv/
-│   └── Ghassen_Kahia_CVJob_Etudiant.pdf   ← votre CV
+│   └── Ghassen_Kahia_CVJob_Etudiant_v2.pdf   ← votre CV
 ├── assets/
 │   ├── css/style.css       Styles (mobile d'abord, + feuille d'impression)
 │   ├── js/main.js          Remplit la page depuis config.js, langue, menu, copie e-mail
@@ -59,7 +59,7 @@ Le bouton « Copier l'adresse » sert aux recruteurs qui n'ont pas de messagerie
 ### 2. Remplacer le CV
 
 1. Exportez votre CV en PDF.
-2. Placez-le dans `cv/`. S'il porte le même nom que l'actuel (`Ghassen_Kahia_CVJob_Etudiant.pdf`),
+2. Placez-le dans `cv/`. S'il porte le même nom que l'actuel (`Ghassen_Kahia_CVJob_Etudiant_v2.pdf`),
    il suffit d'écraser l'ancien. Sinon, mettez le nouveau nom dans `cv.fichier` de `config.js`.
 3. Publiez (voir plus bas).
 
